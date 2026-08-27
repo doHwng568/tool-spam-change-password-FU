@@ -7,7 +7,7 @@ options.add_experimental_option('detach', True)
 
 # 1 driver tương ứng với 1 session trên browser
 # khai báo biến này là global để các function có thể thao tác cùng trên 1 session web đó
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(options=options)
 
 def open_web(x):
     
