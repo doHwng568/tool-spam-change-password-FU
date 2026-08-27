@@ -27,6 +27,9 @@ def put_input(account, email):
     
     driver.find_element(By.ID, 'txt_Username_mail').send_keys(account)
     driver.find_element(By.ID, 'txt_mail').send_keys(email)
+    
+def click_button(id):
+    driver.find_element(By.ID, id).click()
 
 if __name__ == "__main__":
     
@@ -35,5 +38,8 @@ if __name__ == "__main__":
     account, email = input_account()
     
     put_input(account, email)
+    
+    # click enter
+    click_button('submitmail')
     
     
