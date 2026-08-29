@@ -7,6 +7,15 @@ from selenium.webdriver.support import expected_conditions as EC
 options = webdriver.ChromeOptions()
 options.add_experimental_option('detach', True)
 
+# log-level quyết định mức độ ghi log của Chrome
+# chỉ giữ lại log ở level 3 (FATAL), còn các log ở level 0 (INFO), 1 (WARNING), 2 (ERROR) thì sẽ bỏ qua -> giảm mức độ ghi log của Chrome
+options.add_argument('--log-level=3')
+
+# luồng điều khiển làL: python -> selenium -> chrome driver -> chrome
+# Chrome driver khởi động Chrome với rất nhiều tham số (args), trong đó có 'enable-logging' để ghi log các thành phần bên trong Chrome
+# dòng config dưới đây giúp chrome driver không khởi tạo tham số 'enable logging' của trình duyệt nữa
+options.add_experimental_option('excludeSwitches', ['enable-logging']) # Disables DevTools logging
+
 # 1 driver tương ứng với 1 session trên browser
 # khai báo biến này là global để các function có thể thao tác cùng trên 1 session web đó
 driver = webdriver.Chrome(options=options)
@@ -47,6 +56,7 @@ while(True):
     # click enter
     click_button('submitmail')
     
+    # đợi đến khi có message với id 'lbMessage' xuất hiện
     wait.until(
         EC.visibility_of_element_located((By.ID, "lbMessage"))
     )
